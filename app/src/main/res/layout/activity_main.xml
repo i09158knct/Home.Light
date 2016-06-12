@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#999999"
+    android:orientation="vertical"
+    tools:context="net.i09158knct.android.homelight.MainActivity">
+
+    <ListView
+        android:id="@+id/lstApp"
+        android:stackFromBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_app" />
+
+</LinearLayout>
