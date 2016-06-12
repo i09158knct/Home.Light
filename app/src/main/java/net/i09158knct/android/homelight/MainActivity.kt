@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.Settings
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,11 @@ class MainActivity : Activity(), AppListAdapter.IEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        btnOpenPermissionSetting.setOnClickListener {
+            val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+            startActivity(intent);
+        }
 
         am = AppManager(this)
         adapter = AppListAdapter(this, mutableListOf(), this)
@@ -49,7 +55,15 @@ class MainActivity : Activity(), AppListAdapter.IEventListener {
 
     private fun refreshList() {
         adapter.clear()
-        adapter.addAll(am.loadRecentAppList())
+
+        val apps = am.loadRecentAppList()
+
+        btnOpenPermissionSetting.visibility = View.GONE
+        if (apps.size == 0 && !am.isUsageStatPermissionGranted()) {
+            btnOpenPermissionSetting.visibility = View.VISIBLE
+        }
+
+        adapter.addAll(apps)
         adapter.notifyDataSetInvalidated()
     }
 

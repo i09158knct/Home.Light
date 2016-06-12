@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context="net.i09158knct.android.homelight.MainActivity">
 
+    <Button
+        android:id="@+id/btnOpenPermissionSetting"
+        android:text="@string/pleaseTurnOnUsageStats"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <ListView
         android:id="@+id/lstApp"
         android:stackFromBottom="true"

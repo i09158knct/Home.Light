@@ -1,5 +1,6 @@
 package net.i09158knct.android.homelight
 
+import android.app.AppOpsManager
 import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
 import android.content.Context
@@ -24,6 +25,14 @@ class AppManager(val context: Context) {
                 .filter { field.get(it) == 2 }
                 .sortedBy { it.lastTimeStamp }
                 .map { App(it) }
+    }
+
+    fun isUsageStatPermissionGranted(): Boolean {
+        val appOps = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager;
+        val mode = appOps.checkOpNoThrow("android:get_usage_stats",
+                android.os.Process.myUid(),
+                context.getPackageName());
+        return mode == AppOpsManager.MODE_ALLOWED;
     }
 }
 

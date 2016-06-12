@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Home.Light</string>
     <string name="chooseHome">Home</string>
+    <string name="pleaseTurnOnUsageStats">Please turn on Usage Stats Permission</string>
 </resources>
